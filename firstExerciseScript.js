@@ -52,10 +52,10 @@ const maghsum = (number) => {
     }
 }
 
-const Avval = (a) =>{
+const avval = (a) =>{
     let i = 2
-    while ( i < a) {
-        if (a % i === 0){
+    while ( i < a || a == 1) {
+        if (a == 1 || a % i == 0 ){
             return false
         }
         ++i ;
@@ -78,28 +78,47 @@ const avvalShow = (firstNumber , secondNumber) =>{
 }
 
 
-const maxmaker = (number) => {
-   return  10**(number-1) - 1
-}
-
-const numDivider =(number) => {
-    let answer = number.toString(1)
-    console.log(answer)
-    // while (number/10 >= 1){
-    //     storage = (number - (number % 10) ) /10
-    //     console.log(storage)
-    //     number = (number - (number % 10) ) /10
-    // }
-}
-// function passMaker(N){
-//     let max = maxmaker(N)
-//     while (max > 100){
-//
-//     }
+// const maxmaker = (number) => {
+//    return  10**(number-1) - 1
 // }
 
+const numDivider =(number) => {
+    let numString = number.toString()
+    let i = 1
+    let divided = []
+    while (i <= numString.length) {
+        if (avval((numString.substring(0 , i)))){
+            divided.push(numString.substring(0 , i))
+        }
+        i++
+    }
+    if (divided.length === numString.length){
+        return number
+    }
+}
 
-numDivider(5)
+const passMaker = (input) => {
+    let max = (10**(input)) - 1
+    let result = []
+    while (max > (10**(input))/10){
+        if (numDivider(max) !== undefined){
+            result.push(numDivider(max))
+        }
+        max--
+    }
+    return result
+}
+console.log(passMaker(3))
+
+
+
+
+
+
+
+
+
+
 
 
 
